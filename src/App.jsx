@@ -5,6 +5,7 @@ import { ShieldAlert, Presentation, PenTool, SearchX, CheckSquare, StopCircle, U
 import HeroStep from './components/HeroStep';
 import QuestionStep from './components/QuestionStep';
 import ResultStep from './components/ResultStep';
+import VideoStep from './components/VideoStep';
 
 import './index.css';
 
@@ -79,7 +80,13 @@ export default function App() {
 
         {step === 3 && (
           <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-            <ResultStep answers={answers} />
+            <ResultStep answers={answers} onNext={handleNextStep} />
+          </motion.div>
+        )}
+
+        {step === 4 && (
+          <motion.div key="video" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+            <VideoStep />
           </motion.div>
         )}
       </AnimatePresence>

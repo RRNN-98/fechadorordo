@@ -2,16 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { AlertCircle, Target, TrendingDown, EyeOff } from 'lucide-react';
 
-export default function ResultStep({ answers }) {
-    const [showDelayedCta, setShowDelayedCta] = useState(false);
-
-    useEffect(() => {
-        // 5 minutes and 40 seconds = 340 seconds = 340000 ms
-        const timer = setTimeout(() => {
-            setShowDelayedCta(true);
-        }, 340000);
-        return () => clearTimeout(timer);
-    }, []);
+export default function ResultStep({ answers, onNext }) {
 
     const metrics = [
         { label: "Estrutura de Fechamento", value: 27, icon: <Target size={18} /> },
@@ -72,36 +63,16 @@ export default function ResultStep({ answers }) {
 
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
                 <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '2rem', color: 'white' }}>
-                    Para resolver isso, deixei um presente para você, VEJA ATÉ O FINAL PARA RECEBER ⬇️
+                    Para resolver isso, deixei um presente para você
                 </h2>
-
-                <div className="video-container glass-panel">
-                    <iframe
-                        src="https://drive.google.com/file/d/1B5WvAEFtYLFchYmrlrIjbL79IKv3fZSA/preview"
-                        allowFullScreen
-                        title="Video Presentation"
-                    ></iframe>
-                    <div className="video-overlay"></div>
-                </div>
-            </div>
-
-            {showDelayedCta && (
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    style={{ textAlign: 'center', marginTop: '2rem', marginBottom: '4rem' }}
+                <button
+                    onClick={onNext}
+                    className="btn-metallic animate-pulse-glow"
+                    style={{ margin: '0 auto', fontSize: '1.2rem', padding: '1.2rem 2.5rem' }}
                 >
-                    <a
-                        href="https://checkout.escalepay.com/6585715"
-                        className="btn-neon-silver animate-pulse-neon"
-                    >
-                        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-                            👉 Quero Acesso ao Fechador ORDO + Comunidade + Aulas
-                        </span>
-                    </a>
-                </motion.div>
-            )}
+                    🎁 RECEBER PRESENTE
+                </button>
+            </div>
         </motion.div>
     );
 }
